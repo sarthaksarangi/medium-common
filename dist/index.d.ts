@@ -35,20 +35,23 @@ export declare const createBlogInput: z.ZodObject<{
     content: string;
     published: boolean;
 }>;
-export declare const updatedBlogInput: z.ZodObject<{
-    title: z.ZodString;
-    content: z.ZodString;
-    id: z.ZodString;
+export declare const updateBlogInput: z.ZodEffects<z.ZodObject<{
+    title: z.ZodOptional<z.ZodString>;
+    content: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    title: string;
-    content: string;
-    id: string;
+    title?: string | undefined;
+    content?: string | undefined;
 }, {
-    title: string;
-    content: string;
-    id: string;
+    title?: string | undefined;
+    content?: string | undefined;
+}>, {
+    title?: string | undefined;
+    content?: string | undefined;
+}, {
+    title?: string | undefined;
+    content?: string | undefined;
 }>;
 export type SignupInput = z.infer<typeof signupInput>;
 export type SigninInput = z.infer<typeof signinInput>;
 export type CreateBlogInput = z.infer<typeof createBlogInput>;
-export type UpdatedBlogInput = z.infer<typeof updatedBlogInput>;
+export type UpdatedBlogInput = z.infer<typeof updateBlogInput>;

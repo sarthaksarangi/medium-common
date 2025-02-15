@@ -17,13 +17,17 @@ export const createBlogInput = z.object({
   published: z.boolean(),
 });
 
-export const updatedBlogInput = z.object({
-  title: z.string(),
-  content: z.string(),
-  id: z.string(),
-});
+export const updateBlogInput = z
+  .object({
+    title: z.string().min(1, "Title cannot be empty").optional(),
+    content: z.string().min(1, "Content cannot be empty").optional(),
+  })
+  .refine((data) => Object.keys(data).length > 0, {
+    message: "At least one field must be provided for update",
+    path: ["_errors"],
+  });
 
 export type SignupInput = z.infer<typeof signupInput>;
 export type SigninInput = z.infer<typeof signinInput>;
 export type CreateBlogInput = z.infer<typeof createBlogInput>;
-export type UpdatedBlogInput = z.infer<typeof updatedBlogInput>;
+export type UpdatedBlogInput = z.infer<typeof updateBlogInput>;
